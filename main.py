@@ -1,15 +1,21 @@
 import folium
+import pandas as pd
 
-map = folium.Map(location=[33.657029634028994, -112.08982501349456], zoom_start=16, tiles="CartoDB Voyager")
+data = pd.read_csv("Volcanoes.txt")
+lat = list(data['LAT'])
+lon = list(data['LON'])
+
+
+map = folium.Map(location=[40.758701, -111.876183], zoom_start=6, tiles="CartoDB Voyager")
 
 
 fg = folium.FeatureGroup(name='My Map')
 
 
-for coordinates in [[33, -112],[34, -113]]:
+for lat, lon in zip(lat, lon):
     fg.add_child(folium.Marker(
-        location=coordinates,
-        popup="My house",
+        location=[lat, lon],
+        popup="Volcano",
         icon=folium.Icon(color='red')))
 
 map.add_child(fg)
