@@ -5,10 +5,12 @@ map = folium.Map(location=[33.657029634028994, -112.08982501349456], zoom_start=
 
 fg = folium.FeatureGroup(name='My Map')
 
-fg.add_child(folium.Marker(
-    location=[33.657029634028994, -112.08982501349456],
-    popup="Yo",
-    icon=folium.Icon(color='red')))
+
+for coordinates in [[33, -112],[34, -113]]:
+    fg.add_child(folium.Marker(
+        location=coordinates,
+        popup="My house",
+        icon=folium.Icon(color='red')))
 
 map.add_child(fg)
 
