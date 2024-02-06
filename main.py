@@ -7,6 +7,15 @@ lon = list(data['LON'])
 elev = list(data['ELEV'])
 name = list(data['NAME'])
 
+def color_elevation(elevation):
+    if 0 < elevation < 2000:
+        return "green"
+    elif 2000 < elevation < 3000:
+        return "orange"
+    else:
+        return "red"
+
+
 map = folium.Map(location=[40.758701, -111.876183], zoom_start=6, tiles="CartoDB Voyager")
 
 info = """<h5>Volcano Info:</h5>
@@ -20,17 +29,10 @@ fg = folium.FeatureGroup(name='My Map')
 for lat, lon, elev, name in zip(lat, lon, elev, name):
     iframe = folium.IFrame(html=info % (name, name, elev), width=200, height=100)
 
-    if 0 < elev < 2000:
-        color = "green"
-    elif 2000 < elev < 3000:
-        color = "orange"
-    else:
-        color = "red"
-
     fg.add_child(folium.Marker(
         location=[lat, lon],
         popup=folium.Popup(iframe),
-        icon=folium.Icon(color=color)))
+        icon=folium.Icon(color=color_elevation(elev))))
 
 map.add_child(fg)
 
