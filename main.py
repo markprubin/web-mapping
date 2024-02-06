@@ -19,10 +19,18 @@ fg = folium.FeatureGroup(name='My Map')
 
 for lat, lon, elev, name in zip(lat, lon, elev, name):
     iframe = folium.IFrame(html=info % (name, name, elev), width=200, height=100)
+
+    if 0 < elev < 2000:
+        color = "green"
+    elif 2000 < elev < 3000:
+        color = "orange"
+    else:
+        color = "red"
+
     fg.add_child(folium.Marker(
         location=[lat, lon],
         popup=folium.Popup(iframe),
-        icon=folium.Icon(color='red')))
+        icon=folium.Icon(color=color)))
 
 map.add_child(fg)
 
