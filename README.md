@@ -32,7 +32,7 @@ Run the script by typing the following into your terminal:
 ```commandline
 python web-mapping.py
 ```
-
+From there, Map1.html will be generated (or if you decided to rename it). Anytime you run the script, you will have to reload your browser to get the changes, if you make any.
 ### Future Updates
 
 - Add volcanoes in countries outside the United States of America.
