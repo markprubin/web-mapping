@@ -37,6 +37,8 @@ for lat, lon, elev, name in zip(lat, lon, elev, name):
         fill_color=color_elevation(elev), color = 'grey', fill=True, fill_opacity=0.7
         ))
 
+fg.add_child(folium.GeoJson(data=(open('world.json', 'r', encoding='utf-8-sig').read())))
+
 map.add_child(fg)
 
 
